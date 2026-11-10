@@ -1,0 +1,20 @@
+# /etc/systemd/system/dashboard-refresh.service
+# Install:
+#   sudo install -m 0644 dashboard-refresh.service /etc/systemd/system/
+#   sudo install -m 0644 dashboard-refresh.timer /etc/systemd/system/
+#   sudo install -m 0755 cron-refresh.sh /usr/local/bin/dashboard-cron-refresh.sh
+#   printf 'CRON_SECRET=...\nDASHBOARD_URL=http://127.0.0.1:3000\n' | sudo tee /etc/dashboard-refresh.env
+#   sudo chmod 600 /etc/dashboard-refresh.env
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now dashboard-refresh.timer
+#
+[Unit]
+Description=Trigger Asset Dashboard data refresh (localhost)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/dashboard-refresh.env
+ExecStart=/usr/local/bin/dashboard-cron-refresh.sh
+Nice=10

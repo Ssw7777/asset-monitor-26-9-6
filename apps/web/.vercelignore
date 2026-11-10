@@ -1,0 +1,12 @@
+.env.local
+.env.*.local
+.playwright-cli
+.tmp-vercel-cli
+output
+local-design.db
+data/store.json
+data/*.db
+data/*.sqlite
+
+scripts-*.mjs
+scripts-*.ts

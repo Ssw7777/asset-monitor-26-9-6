@@ -1,0 +1,18 @@
+# /etc/systemd/system/dashboard-refresh.timer
+# Pair with dashboard-refresh.service. Recommended for a single VPS host.
+#
+#   sudo systemctl enable --now dashboard-refresh.timer
+#   systemctl list-timers dashboard-refresh.timer
+#
+[Unit]
+Description=Periodic Asset Dashboard refresh (VPS)
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=1min
+AccuracySec=10s
+Persistent=true
+Unit=dashboard-refresh.service
+
+[Install]
+WantedBy=timers.target

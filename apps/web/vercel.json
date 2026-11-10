@@ -1,0 +1,9 @@
+{
+  "regions": ["hkg1"],
+  "crons": [
+    {
+      "path": "/api/cron/refresh?mode=auto",
+      "schedule": "17 3 * * *"
+    }
+  ]
+}
